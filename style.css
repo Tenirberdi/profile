@@ -1,0 +1,263 @@
+/* Basic CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global Styles & Typography */
+html {
+    font-size: 16px; /* Base font-size */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f7f6; /* Neutral background */
+    color: #333; /* Dark color for text */
+    padding-top: 70px; /* Add padding to body to prevent content from being hidden by fixed header */
+}
+
+h1, h2, h3 {
+    color: #2c3e50; /* Primary color for headings */
+    margin-bottom: 0.5em;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+a {
+    color: #3498db; /* Accent color for links */
+}
+
+/* Header & Navigation */
+header {
+    background-color: #34495e; /* Dark gray for header */
+    color: #ecf0f1; /* Contrasting text color */
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Make header fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure header is above other content */
+}
+
+header h1 {
+    color: #ecf0f1; /* Header h1 color */
+    margin-bottom: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ecf0f1; /* Navigation link color */
+    margin-left: 20px; /* Spacing between nav items */
+    padding: 0.5em;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: #bdc3c7; /* Lighter color on hover */
+}
+
+/* Main Content & Sections */
+main {
+    max-width: 960px;
+    margin: 2em auto;
+    padding: 0 1em;
+}
+
+section {
+    padding: 2em 1em;
+    border-bottom: 1px solid #ddd; /* Separation for sections */
+    margin-bottom: 1.5em;
+}
+
+section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* Hero Section */
+#hero {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between text and photo */
+    padding-top: 3rem; /* Extra padding because of fixed header */
+    padding-bottom: 3rem;
+    background-color: #ffffff; /* Slightly different background for hero */
+}
+
+#hero h2 {
+    margin-bottom: 0.25em;
+}
+
+.photo-placeholder, .profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Makes it round */
+  background-color: #ccc; /* Placeholder background */
+  color: #555; /* Placeholder text color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  object-fit: cover; /* Ensures the image covers the area, useful for actual photos */
+  font-size: 0.9em;
+  border: 3px solid #fff; /* Optional: adds a white border like some profile pics */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: subtle shadow */
+  flex-shrink: 0; /* Prevent shrinking if text is long */
+  margin: 1em auto; /* Centering for when hero is flex-direction column */
+}
+
+/* Work Experience & Projects Sections */
+.job-entry, .project-entry {
+    margin-bottom: 2em; /* Space between entries */
+    padding: 1em;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.job-entry h3, .project-entry h3 {
+    color: #3498db; /* Accent color for entry titles */
+    margin-bottom: 0.25em;
+}
+
+.job-entry p, .project-entry p {
+    margin-bottom: 0.5em;
+}
+
+.job-entry ul {
+    list-style-position: inside;
+    padding-left: 0; /* Adjust if using custom bullets */
+    margin-left: 1em; /* Indent list items */
+}
+
+.job-entry ul li, .project-entry ul li {
+    margin-bottom: 0.25em;
+}
+
+.project-entry a {
+    display: inline-block;
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+    padding: 0.6em 1.2em;
+    background-color: #3498db; /* Primary button color */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.project-entry a:hover {
+    background-color: #2980b9; /* Darker shade on hover */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2em 1em;
+    background-color: #2c3e50; /* Dark color for footer */
+    color: #ecf0f1; /* Light text color for footer */
+    font-size: 0.9em;
+    margin-top: 2em;
+}
+
+.contact-links {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em; /* Add some space around the links */
+}
+
+.contact-links a {
+  color: #ecf0f1; /* Assuming footer has a dark background */
+  text-decoration: none;
+  margin: 0 10px; /* Space out the links */
+}
+
+.contact-links a:hover {
+  text-decoration: underline;
+}
+
+/* Basic Responsiveness (Media Queries) */
+@media (max-width: 768px) {
+    body {
+        padding-top: 100px; /* Adjust for potentially taller header */
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 0.5em 1em; /* Reduce padding on smaller screens */
+    }
+
+    header h1 {
+        margin-bottom: 0.25em; /* Space between title and nav on mobile */
+    }
+
+    nav {
+        margin-top: 10px;
+    }
+
+    nav ul {
+        justify-content: center;
+        padding-left: 0; /* Remove padding for centered items */
+    }
+
+    nav a {
+        margin: 0 10px; /* Adjust spacing for nav links */
+        padding: 0.25em;
+    }
+
+    #hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    /* #hero div[style*="background-color:#ccc"] {
+        margin: 1em auto; /* Center photo placeholder */
+    /* } */ /* Commented out as .photo-placeholder now handles margin */
+
+    main {
+        padding: 0 0.5em; /* Reduce padding for main content on smaller screens */
+    }
+
+    section {
+        padding: 1.5em 0.5em; /* Reduce section padding */
+    }
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.25rem; }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 120px; /* Further adjust for header */
+    }
+    nav ul {
+        flex-direction: column; /* Stack nav items on very small screens */
+    }
+    nav ul li {
+        margin: 5px 0; /* Adjust margin for stacked nav items */
+    }
+    nav a {
+        display: block; /* Make nav links take full width for easier tapping */
+    }
+    .project-entry a {
+        display: block; /* Stack project links */
+        margin-right: 0;
+        margin-bottom: 0.5em; /* Add space between stacked links */
+        text-align: center;
+    }
+}
