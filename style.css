@@ -5,21 +5,46 @@
     box-sizing: border-box;
 }
 
+/* CSS Variables for Geek/Coding Theme */
+:root {
+  --bg-primary: linear-gradient(to bottom right, #2c003e, #4a0072);
+  --text-primary: #e0e0e0;
+  --text-secondary: #c0c0c0;
+  --accent-pink: #ff00ff;
+  --accent-cyan: #00ffff;
+  --accent-cyan-rgb: 0,255,255; /* RGB version for box-shadow */
+  --accent-green: #39ff14; /* Neon green for links/accents */
+  --code-bg: #1e1e1e; /* Dark background for code-like elements */
+  --border-color: var(--accent-cyan);
+  --heading-font: 'Consolas', 'Menlo', 'Courier New', monospace;
+  --body-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 /* Global Styles & Typography */
 html {
     font-size: 16px; /* Base font-size */
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--body-font);
     line-height: 1.6;
-    background-color: #f4f7f6; /* Neutral background */
-    color: #333; /* Dark color for text */
-    padding-top: 70px; /* Add padding to body to prevent content from being hidden by fixed header */
+    /* Layered background: grid pattern on top of primary gradient */
+    background:
+      /* Top layer: pixel grid */
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), /* Thin horizontal lines */
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px), /* Thin vertical lines */
+      /* Bottom layer: original purple gradient */
+      var(--bg-primary);
+    background-size: 10px 10px, /* Size of the grid squares for horizontal lines */
+                     10px 10px, /* Size of the grid squares for vertical lines */
+                     auto;      /* Original gradient size */
+    color: var(--text-primary);
+    padding-top: 80px; /* Adjust if header height changes */
 }
 
-h1, h2, h3 {
-    color: #2c3e50; /* Primary color for headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    color: var(--accent-pink); /* Pink accent for headings */
     margin-bottom: 0.5em;
 }
 
@@ -27,27 +52,35 @@ h1 { font-size: 2.5rem; }
 h2 { font-size: 2rem; }
 h3 { font-size: 1.5rem; }
 
+/* General Links */
 a {
-    color: #3498db; /* Accent color for links */
+    color: var(--accent-green); /* Neon green for general links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--accent-cyan); /* Cyan on hover for general links */
 }
 
 /* Header & Navigation */
 header {
-    background-color: #34495e; /* Dark gray for header */
-    color: #ecf0f1; /* Contrasting text color */
+    background-color: #1e002a; /* Solid darker purple */
+    color: var(--text-primary);
     padding: 1em 2em;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed; /* Make header fixed */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Ensure header is above other content */
+    z-index: 1000;
+    border-bottom: 2px solid var(--accent-cyan); /* Cyan border bottom */
 }
 
 header h1 {
-    color: #ecf0f1; /* Header h1 color */
+    color: var(--text-primary);
     margin-bottom: 0;
 }
 
@@ -57,15 +90,18 @@ nav ul {
 }
 
 nav a {
+    font-family: var(--heading-font); /* Monospace for nav links */
     text-decoration: none;
-    color: #ecf0f1; /* Navigation link color */
-    margin-left: 20px; /* Spacing between nav items */
+    color: var(--accent-cyan); /* Cyan for nav links */
+    margin-left: 20px;
     padding: 0.5em;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 nav a:hover {
-    text-decoration: underline;
-    color: #bdc3c7; /* Lighter color on hover */
+    color: var(--accent-pink);
+    text-shadow: 0 0 5px var(--accent-pink), 0 0 10px var(--accent-pink); /* Pink glow on hover */
+    text-decoration: none;
 }
 
 /* Main Content & Sections */
@@ -77,8 +113,11 @@ main {
 
 section {
     padding: 2em 1em;
-    border-bottom: 1px solid #ddd; /* Separation for sections */
+    border-bottom: 2px dashed var(--accent-cyan); /* More prominent dashed cyan border */
     margin-bottom: 1.5em;
+    background-color: rgba(0,0,0,0.1); /* Subtle dark overlay for sections */
+    border-radius: 5px; /* Slight rounding for section blocks */
+    position: relative; /* For potential future pseudo-element decorations */
 }
 
 section:last-of-type {
@@ -90,117 +129,186 @@ section:last-of-type {
 #hero {
     display: flex;
     align-items: center;
-    gap: 30px; /* Space between text and photo */
-    padding-top: 3rem; /* Extra padding because of fixed header */
+    gap: 30px;
+    padding-top: 3rem;
     padding-bottom: 3rem;
-    background-color: #ffffff; /* Slightly different background for hero */
+    background-color: rgba(0,0,0,0.2); /* Darker overlay for hero */
+    border-bottom: 1px solid var(--accent-pink); /* Pink border for hero */
 }
 
 #hero h2 {
     margin-bottom: 0.25em;
+    color: var(--accent-green); /* Green for hero heading */
 }
 
 .photo-placeholder, .profile-photo {
   width: 150px;
   height: 150px;
-  border-radius: 50%; /* Makes it round */
-  background-color: #ccc; /* Placeholder background */
-  color: #555; /* Placeholder text color */
+  border-radius: 50%;
+  background-color: var(--code-bg); /* Dark bg for photo placeholder */
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  object-fit: cover; /* Ensures the image covers the area, useful for actual photos */
+  object-fit: cover;
   font-size: 0.9em;
-  border: 3px solid #fff; /* Optional: adds a white border like some profile pics */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: subtle shadow */
-  flex-shrink: 0; /* Prevent shrinking if text is long */
-  margin: 1em auto; /* Centering for when hero is flex-direction column */
+  font-family: var(--heading-font);
+  border: 3px solid var(--accent-pink); /* Pink border for photo */
+  box-shadow: 0 0 10px var(--accent-pink); /* Pink glow for photo */
+  flex-shrink: 0;
+  margin: 0 auto; /* Keep auto margin for centering in flex column */
 }
 
 /* Work Experience & Projects Sections */
 .job-entry, .project-entry {
-    margin-bottom: 2em; /* Space between entries */
-    padding: 1em;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 2em;
+    padding: 1.5em; /* Increased padding */
+    background-color: var(--code-bg); /* Dark bg for entries */
+    border: 1px solid var(--accent-cyan); /* Cyan border for entries */
+    border-radius: 0; /* Sharp corners */
+    box-shadow: 0 0 8px var(--accent-cyan); /* Cyan glow */
 }
 
 .job-entry h3, .project-entry h3 {
-    color: #3498db; /* Accent color for entry titles */
+    color: var(--accent-cyan); /* Cyan for entry titles */
     margin-bottom: 0.25em;
 }
 
 .job-entry p, .project-entry p {
     margin-bottom: 0.5em;
+    color: var(--text-secondary); /* Lighter text for descriptions */
 }
 
 .job-entry ul {
-    list-style-position: inside;
-    padding-left: 0; /* Adjust if using custom bullets */
-    margin-left: 1em; /* Indent list items */
+    list-style-type: '» '; /* Hacker-like list bullet */
+    padding-left: 1.5em;
+    color: var(--text-secondary);
 }
 
-.job-entry ul li, .project-entry ul li {
+.job-entry ul li {
     margin-bottom: 0.25em;
+    padding-left: 0.5em;
 }
 
+/* Project Links as Buttons */
 .project-entry a {
     display: inline-block;
-    margin-top: 0.5em;
+    margin-top: 0.75em; /* Increased margin */
     margin-right: 0.5em;
     padding: 0.6em 1.2em;
-    background-color: #3498db; /* Primary button color */
-    color: white;
+    background-color: var(--accent-pink);
+    color: var(--code-bg); /* Dark text on pink button */
     text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    border-radius: 0; /* Sharp corners */
+    font-family: var(--heading-font);
+    font-weight: bold;
+    border: 1px solid var(--accent-pink);
+    transition: background-color 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-entry a:hover {
-    background-color: #2980b9; /* Darker shade on hover */
+    background-color: var(--accent-cyan);
+    color: var(--code-bg); /* Dark text on cyan button */
+    text-shadow: 0 0 5px var(--accent-cyan);
+    box-shadow: 0 0 10px var(--accent-cyan);
+    text-decoration: none;
+    border-color: var(--accent-cyan);
 }
 
 /* Footer */
 footer {
     text-align: center;
     padding: 2em 1em;
-    background-color: #2c3e50; /* Dark color for footer */
-    color: #ecf0f1; /* Light text color for footer */
+    background-color: #1e002a; /* Solid darker purple */
+    color: var(--text-secondary);
     font-size: 0.9em;
     margin-top: 2em;
+    border-top: 2px solid var(--accent-cyan); /* Cyan border top */
 }
 
 .contact-links {
   margin-top: 0.5em;
-  margin-bottom: 0.5em; /* Add some space around the links */
+  margin-bottom: 1em; /* More space below contact links */
 }
 
 .contact-links a {
-  color: #ecf0f1; /* Assuming footer has a dark background */
+  color: var(--accent-green); /* Green for contact links */
   text-decoration: none;
-  margin: 0 10px; /* Space out the links */
+  margin: 0 10px;
+  font-family: var(--heading-font); /* Monospace for contact links */
 }
 
 .contact-links a:hover {
+  color: var(--accent-pink); /* Pink on hover */
   text-decoration: underline;
+  text-shadow: 0 0 5px var(--accent-pink);
+}
+
+/* Code Snippet Styling */
+.code-snippet-container {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.code-snippet-container h4, .code-snippet-container h5 { /* Styling for optional headings above code blocks */
+  font-size: 0.9em;
+  color: var(--accent-cyan);
+  font-family: 'Consolas', 'Menlo', 'Courier New', monospace;
+  margin-bottom: 0.5em;
+  font-weight: normal;
+}
+
+pre.code-block {
+  background-color: var(--code-bg, #1e1e1e); /* Use variable, fallback if not set */
+  color: #d4d4d4; /* Light gray for code text */
+  padding: 1em;
+  border-radius: 4px; /* Slightly rounded corners for the block */
+  overflow-x: auto; /* Horizontal scroll for long lines */
+  border: 1px solid var(--border-color, #00ffff); /* Accent border */
+  box-shadow: 0 0 10px rgba(var(--accent-cyan-rgb, 0,255,255), 0.1); /* Subtle glow */
+}
+
+pre.code-block code {
+  font-family: 'Source Code Pro', 'Consolas', 'Menlo', 'Courier New', monospace;
+  font-size: 0.9em;
+  line-height: 1.5;
+  white-space: pre-wrap; /* Wrap long lines that are not broken, but allow pre formatting */
+}
+
+/* Basic generic "syntax" highlighting attempts */
+pre.code-block code .code-comment { color: #6a9955; } /* Green for comments */
+pre.code-block code .code-keyword { color: #569cd6; } /* Blue for keywords like public, class */
+pre.code-block code .code-string { color: #ce9178; } /* Orange for strings */
+pre.code-block code .code-class-name { color: #4ec9b0; } /* Teal for class names */
+
+/* Blinking Cursor Effect for Hero Heading */
+#hero h2::after {
+  content: '_'; /* Or use a block character like '█' */
+  animation: blink-caret 1s step-end infinite;
+  margin-left: 5px;
+  color: var(--accent-green); /* Use one of the accent colors */
+}
+
+@keyframes blink-caret {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* Basic Responsiveness (Media Queries) */
 @media (max-width: 768px) {
     body {
-        padding-top: 100px; /* Adjust for potentially taller header */
+        padding-top: 120px; /* Adjust for potentially taller header in column layout */
     }
 
     header {
         flex-direction: column;
         text-align: center;
-        padding: 0.5em 1em; /* Reduce padding on smaller screens */
+        padding: 0.5em 1em;
     }
 
     header h1 {
-        margin-bottom: 0.25em; /* Space between title and nav on mobile */
+        margin-bottom: 0.25em;
     }
 
     nav {
@@ -209,11 +317,11 @@ footer {
 
     nav ul {
         justify-content: center;
-        padding-left: 0; /* Remove padding for centered items */
+        padding-left: 0;
     }
 
     nav a {
-        margin: 0 10px; /* Adjust spacing for nav links */
+        margin: 0 10px;
         padding: 0.25em;
     }
 
@@ -224,16 +332,16 @@ footer {
         padding-bottom: 2rem;
     }
 
-    /* #hero div[style*="background-color:#ccc"] {
-        margin: 1em auto; /* Center photo placeholder */
-    /* } */ /* Commented out as .photo-placeholder now handles margin */
+    .photo-placeholder, .profile-photo {
+        margin: 1em auto; /* Ensures centering */
+    }
 
     main {
-        padding: 0 0.5em; /* Reduce padding for main content on smaller screens */
+        padding: 0 0.5em;
     }
 
     section {
-        padding: 1.5em 0.5em; /* Reduce section padding */
+        padding: 1.5em 0.5em;
     }
 
     h1 { font-size: 2rem; }
@@ -243,21 +351,21 @@ footer {
 
 @media (max-width: 480px) {
     body {
-        padding-top: 120px; /* Further adjust for header */
+        padding-top: 150px; /* Further adjust for header */
     }
     nav ul {
-        flex-direction: column; /* Stack nav items on very small screens */
+        flex-direction: column;
     }
     nav ul li {
-        margin: 5px 0; /* Adjust margin for stacked nav items */
+        margin: 5px 0;
     }
     nav a {
-        display: block; /* Make nav links take full width for easier tapping */
+        display: block;
     }
     .project-entry a {
-        display: block; /* Stack project links */
+        display: block;
         margin-right: 0;
-        margin-bottom: 0.5em; /* Add space between stacked links */
+        margin-bottom: 0.5em;
         text-align: center;
     }
 }

@@ -27,6 +27,16 @@
             <h2>About Me</h2>
             <!-- TODO: Update this paragraph with your personal details. -->
             <p>Hello! I'm a passionate Java Backend Developer with a knack for building robust and scalable applications. I enjoy tackling complex problems and continuously learning new technologies. In my free time, I explore open-source projects and contribute to the developer community.</p>
+            <div class="code-snippet-container">
+              <h4>// A glimpse into my code style:</h4>
+              <pre class="code-block"><code><span class="code-comment">// Java Example: Simple utility function</span>
+<span class="code-keyword">public class</span> <span class="code-class-name">StringUtils</span> {
+    <span class="code-keyword">public static boolean</span> isNullOrEmpty(<span class="code-class-name">String</span> str) {
+        <span class="code-keyword">return</span> str == <span class="code-keyword">null</span> || str.trim().isEmpty();
+    }
+}
+<span class="code-comment">// TODO: Replace with your own Java code snippet.</span></code></pre>
+            </div>
         </section>
         <section id="experience">
             <h2>Work Experience</h2>
@@ -59,6 +69,21 @@
                 <div class="project-entry">
                   <h3>Awesome Project Alpha</h3>
                   <p>This project solves a real-world problem by leveraging cutting-edge backend technologies. Focused on scalability and performance.</p>
+                  <div class="code-snippet-container">
+                    <h5>// Core logic example:</h5>
+                    <pre class="code-block"><code><span class="code-comment">// Java Snippet from Awesome Project Alpha</span>
+<span class="code-keyword">public</span> <span class="code-class-name">Response</span> handleRequest(<span class="code-class-name">Request</span> request) {
+    <span class="code-comment">// Authentication & Authorization</span>
+    authService.verify(request.getToken());
+
+    <span class="code-comment">// Business Logic</span>
+    <span class="code-class-name">Data</span> data = dataService.fetch(request.getId());
+    <span class="code-class-name">Result</span> result = processingService.process(data);
+
+    <span class="code-keyword">return</span> <span class="code-class-name">Response</span>.builder().payload(result).build();
+}
+<span class="code-comment">// TODO: Replace with an actual snippet from this project.</span></code></pre>
+                  </div>
                   <a href="#">View Live Demo (Link Placeholder)</a> | <a href="#">Source Code (Link Placeholder)</a>
                   <!-- Placeholder for project image/thumbnail -->
                   <div style="width:100%; height:100px; background-color:#eee; text-align:center; line-height:100px; margin-top:10px;">Project Thumbnail</div>
